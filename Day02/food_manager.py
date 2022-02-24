@@ -21,8 +21,13 @@ while True:
         2. 사전에 존재하지 않는 메뉴라면 가격을 입력받아
         key:value 쌍으로 맵핑하여 사전에 저장하세요.
         '''
-       
-
+        name = input('메뉴명 : ')
+        if name not in foods:
+            price = input('가격 : ')
+            foods[name] = price
+            print(f'신규 메뉴 {name}이(가) 등록되었습니다.')
+        else:
+            print(f'{name}은(는) 이미 등록된 메뉴입니다.')
     elif menu == 2:
         '''
         - 만약 2번을 선택했는데, 메뉴가 하나도 등록되어 있지 않다면
@@ -44,6 +49,35 @@ while True:
          이름이 없으면 없다고 출력.
         # 나가기 -> 메인메뉴로 나가시면 됩니다.
         '''
+        if len(foods) != 0:
+            print('\n========== 메뉴판 ==========')
+            for m in foods:
+                print(f'{m} : {foods[m]}원')
+            print('===============================')
+            print('1. 수정 | 2. 삭제 | 3. 나가기')
+            select = input('> ')
+        else:
+            print('등록된 메뉴가 없습니다. 메뉴부터 먼저 등록해 주세요.')
+        if select == '1':
+            print('가격을 변경할 메뉴를 먼저 입력해 주세요.')
+            name = input('=> ')
+            if name in  foods:
+                new_price = input('변경할 가격 : ')
+                foods[name] = new_price
+                print(f'{name}의 가격이 {new_price}원으로 변경되었습니다.')
+            else:
+                print(f'{name}은(는) 등록된 음식이 아닙니다.')
+        elif select == '2':
+            print('삭제할 메뉴를 먼저 입력해 주세요.')
+            name = input('=> ')
+            if name in  foods:
+                del(foods[name])
+                print(f'{name}가 정상적으로 삭제되었습니다.')
+            else:
+                print(f'{name}은(는) 등록된 음식이 아닙니다.')
+        elif select == '3':
+            continue # 3번은 아예 작성하지 않아도 어차피 처음으로 갑니다. 생략가능 안써도/ 흐름이해해야함
+
 
 
       
@@ -55,7 +89,14 @@ while True:
         만약 y 이외의 값이 들어온다면 종료 의지가 없다고 판단하고
         종료를 취소하도록 하겠습니다.
         '''
-
+        print('# 프로그램을 종료하시겠습니까? [Y / N]')
+        quit = input('=> ').lower()
+        if quit == 'y':
+            print('프로그램을 종료합니다.')
+            break
+        else:
+            print('종료를 취소합니다.')
+            # continue 생략가능
       
     else:
         print("메뉴를 잘못 입력하셨습니다.")

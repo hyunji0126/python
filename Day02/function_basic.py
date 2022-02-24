@@ -86,8 +86,18 @@ def add(n1,n2):
 result = add(10,5)
 print(add(add(5,7),add(9,8)))
 
+# 만약 여러개의 값을 한번에 return해야 할 때는 컬렉션 자료형을 사용합니다.(list,tuple,set)
+def operate_all(n1,n2):
+  return n1 + n2, n1-n2 * n2, n1 / n2 # tuple
+  # return n1-n2 return을 여러개 쓸수없다
 
+print(type(operate_all(10,5)))
 
+def multi(n1,n2):
+  result = n1 * n2
+  print(f'{n1} x {n2} = {result}')
+
+multi(9,6) # 변수대입불가 리넡이 없는 함수라서
 
 
 
